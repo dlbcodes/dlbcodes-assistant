@@ -1,0 +1,71 @@
+<script setup lang="ts">
+import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import {
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    TabsPanels,
+    TabsContent,
+} from "@dlbcodes/my-design-system";
+import {
+    PhUser,
+    PhSliders,
+    PhShieldCheck,
+    PhCreditCard,
+} from "@phosphor-icons/vue";
+import ProfileSection from "../../components/app/settings/ProfileSection.vue";
+import PreferencesSection from "../../components/app/settings/PreferencesSection.vue";
+import SecuritySection from "../../components/app/settings/SecuritySection.vue";
+import BillingSection from "../../components/app/settings/BillingSection.vue";
+
+const route = useRoute();
+const router = useRouter();
+
+// Tab order is the source of truth; the URL ?tab= mirrors it for refresh + deep links.
+const TABS = ["profile", "preferences", "security", "billing"] as const;
+
+const activeIndex = computed(() => {
+    const i = TABS.indexOf(route.query.tab as (typeof TABS)[number]);
+    return i === -1 ? 0 : i;
+});
+
+const onChange = (index: number): void => {
+    router.replace({ query: { ...route.query, tab: TABS[index] } });
+};
+</script>
+
+<template>
+    <div class="max-w-3xl px-6 md:px-20 py-10">
+        <h1 class="font-serif text-3xl tracking-wide text-text-primary">
+            Settings
+        </h1>
+        <p class="mt-1 text-sm text-text-secondary">
+            Manage your account, preferences, security, and billing.
+        </p>
+
+        <Tabs class="mt-8" :selected-index="activeIndex" @change="onChange">
+            <TabsList>
+                <TabsTrigger>
+                    <PhUser class="size-4" aria-hidden="true" /> Profile
+                </TabsTrigger>
+                <TabsTrigger>
+                    <PhSliders class="size-4" aria-hidden="true" /> Preferences
+                </TabsTrigger>
+                <TabsTrigger>
+                    <PhShieldCheck class="size-4" aria-hidden="true" /> Security
+                </TabsTrigger>
+                <TabsTrigger>
+                    <PhCreditCard class="size-4" aria-hidden="true" /> Billing
+                </TabsTrigger>
+            </TabsList>
+
+            <TabsPanels class="mt-8">
+                <TabsContent><ProfileSection /></TabsContent>
+                <TabsContent><PreferencesSection /></TabsContent>
+                <TabsContent><SecuritySection /></TabsContent>
+                <TabsContent><BillingSection /></TabsContent>
+            </TabsPanels>
+        </Tabs>
+    </div>
+</template>
