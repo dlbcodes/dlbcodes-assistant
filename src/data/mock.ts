@@ -1,4 +1,11 @@
 import type { Conversation } from "../types/chat";
+import type { User } from "../types/chat";
+
+export const currentUser: User = {
+	name: "Dana Lewis",
+	email: "dana@example.com",
+	avatar: "https://api.dicebear.com/9.x/avataaars/svg?seed=Dana"
+};
 
 const MINUTE = 1000 * 60;
 const HOUR = MINUTE * 60;

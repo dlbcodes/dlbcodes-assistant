@@ -27,6 +27,7 @@ import {
     PhPencilSimple,
     PhTrash,
     PhMagnifyingGlass,
+    PhGithubLogo,
 } from "@phosphor-icons/vue";
 import BrandMark from "../components/BrandMark.vue";
 import ThemeSwitcher from "../components/ThemeSwitcher.vue";
@@ -192,7 +193,17 @@ const helpOpen = ref(false);
                             />
                             Upgrade to <span class="text-brand-200">Pro</span>
                         </div>
-                        <div>Ani</div>
+                        <div class="flex items-center">
+                            <span
+                                class="dot size-3 rounded-full bg-[#e4f221] ring-2 ring-bg-raised"
+                            ></span>
+                            <span
+                                class="dot -ml-1 size-3 rounded-full bg-[#934cff] ring-2 ring-bg-raised"
+                            ></span>
+                            <span
+                                class="dot -ml-1 size-3 rounded-full bg-[#fb4d00] ring-2 ring-bg-raised"
+                            ></span>
+                        </div>
                     </Button>
                 </SidebarFooter>
                 <!-- End Footer -->
@@ -209,7 +220,16 @@ const helpOpen = ref(false);
                     >
                         {{ pageTitle }}
                     </span>
-                    <div class="ml-auto">
+                    <div class="ml-auto flex items-center gap-x-2">
+                        <Button
+                            as="a"
+                            to="https://github.com/dlbcodes/dlbcodes-assistant"
+                            target="_blank"
+                            variant="icon"
+                            size="icon"
+                        >
+                            <PhGithubLogo />
+                        </Button>
                         <ThemeSwitcher />
                     </div>
                 </header>
@@ -249,3 +269,31 @@ const helpOpen = ref(false);
         @confirm="onDelete"
     />
 </template>
+
+<style>
+@keyframes dot-cycle {
+    0% {
+        background-color: #e4f221;
+    }
+    33% {
+        background-color: #934cff;
+    }
+    66% {
+        background-color: #fb4d00;
+    }
+    100% {
+        background-color: #e4f221;
+    }
+}
+
+.group:hover .dot {
+    animation: dot-cycle 2.5s linear infinite;
+}
+
+.group:hover .dot:nth-child(2) {
+    animation-delay: -1s;
+}
+.group:hover .dot:nth-child(3) {
+    animation-delay: -2s;
+}
+</style>

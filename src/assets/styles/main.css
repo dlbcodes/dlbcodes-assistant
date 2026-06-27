@@ -27,53 +27,53 @@
 
 /* ─── Zinc — shadcn's cool-gray base; near monochrome ─── */
 [data-theme="zinc"] {
-    /* Backgrounds — flat white surfaces, gray canvas */
-    --color-bg-base: oklch(1 0 0); /* #ffffff */
-    --color-bg-surface: oklch(0.98 0 0); /* #f5f5f5 neutral-100 */
-    --color-bg-raised: oklch(1 0 0); /* #ffffff card */
-    --color-bg-elevated: oklch(0.9851 0 0); /* #fafafa neutral-50 */
-    --color-bg-subtle: oklch(0.95 0 0); /* #f5f5f5 neutral-100 hover */
-    --color-bg-inverse: oklch(0.2046 0 0); /* #171717 neutral-900 */
+    /* Backgrounds */
+    --color-bg-base: oklch(1 0 0);
+    --color-bg-surface: oklch(0.976 0 0);
+    --color-bg-raised: oklch(1 0 0);
+    --color-bg-elevated: oklch(0.9851 0 0);
+    --color-bg-subtle: oklch(0.95 0 0);
+    --color-bg-inverse: oklch(0.2046 0 0);
 
     /* Text */
-    --color-text-primary: oklch(0.1448 0 0); /* #0a0a0a neutral-950 */
-    --color-text-secondary: oklch(0.5555 0 0); /* #737373 neutral-500 */
-    --color-text-tertiary: oklch(0.7155 0 0); /* #a3a3a3 neutral-400 */
-    --color-text-inverse: oklch(0.9851 0 0); /* #fafafa */
+    --color-text-primary: oklch(0.1448 0 0);
+    --color-text-secondary: oklch(0.5555 0 0);
+    --color-text-tertiary: oklch(0.7155 0 0);
+    --color-text-inverse: oklch(0.9851 0 0);
 
     /* Borders */
-    --color-border-subtle: oklch(0.9219 0 0); /* #e5e5e5 neutral-200 */
-    --color-border-default: oklch(0.9219 0 0); /* #e5e5e5 */
-    --color-border-strong: oklch(0.7155 0 0); /* #a3a3a3 neutral-400 ring */
+    --color-border-subtle: oklch(0.9219 0 0);
+    --color-border-default: oklch(0.9219 0 0);
+    --color-border-strong: oklch(0.7155 0 0);
 
-    /* Brand — near-black (shadcn's defining trait) */
-    --color-brand-100: oklch(0.1448 0 0); /* #0a0a0a darker hover */
-    --color-brand-200: oklch(0.2046 0 0); /* #171717 primary */
+    /* Brand */
+    --color-brand-100: oklch(0.1448 0 0);
+    --color-brand-200: oklch(0.2046 0 0);
 
     --color-accent-pro-200: oklch(0.66 0.22 37.3);
     --color-accent-pro-200: oklch(0.66 0.22 37.3);
 }
 
-/* ─── Slate — strong blue-gray neutrals, blue accent ─── */
+/* ─── Slate  ─── */
 [data-theme="slate"] {
     /* Backgrounds */
-    --color-bg-base: oklch(0.9911 0 0); /* #fcfcfc */
-    --color-bg-surface: oklch(0.9674 0.0013 286.37); /* #f4f4f5 muted */
-    --color-bg-raised: oklch(1 0 0); /* #ffffff card */
-    --color-bg-elevated: oklch(0.9791 0 0); /* #f8f8f8 */
-    --color-bg-subtle: oklch(0.9404 0.0013 286.37); /* #ebebec hover */
-    --color-bg-inverse: oklch(0.1763 0.014 258.36); /* matches text-primary */
+    --color-bg-base: oklch(0.9911 0 0);
+    --color-bg-surface: oklch(0.9674 0.0013 286.37);
+    --color-bg-raised: oklch(1 0 0);
+    --color-bg-elevated: oklch(0.9791 0 0);
+    --color-bg-subtle: oklch(0.9404 0.0013 286.37);
+    --color-bg-inverse: oklch(0.1763 0.014 258.36);
 
     /* Text */
-    --color-text-primary: oklch(0.1763 0.014 258.36); /* #0d1117 */
-    --color-text-secondary: oklch(0.5517 0.0138 285.94); /* #71717a */
-    --color-text-tertiary: oklch(0.6793 0.0131 286.05); /* #9797a0 */
-    --color-text-inverse: oklch(1 0 0); /* #ffffff */
+    --color-text-primary: oklch(0.1763 0.014 258.36);
+    --color-text-secondary: oklch(0.5517 0.0138 285.94);
+    --color-text-tertiary: oklch(0.6793 0.0131 286.05);
+    --color-text-inverse: oklch(1 0 0);
 
     /* Borders */
-    --color-border-subtle: oklch(0.9197 0.004 286.32); /* #e4e4e7 */
-    --color-border-default: oklch(0.9197 0.004 286.32); /* #e4e4e7 */
-    --color-border-strong: oklch(0.7587 0.0071 286.23); /* #b0b0b5 */
+    --color-border-subtle: oklch(0.9197 0.004 286.32);
+    --color-border-default: oklch(0.9197 0.004 286.32);
+    --color-border-strong: oklch(0.7587 0.0071 286.23);
 
     /* Brand — red */
     --color-brand-100: oklch(0.5327 0.2186 29.23); /* #cd0000 darker hover */

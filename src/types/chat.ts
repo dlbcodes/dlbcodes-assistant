@@ -7,6 +7,12 @@ export type Role = "user" | "assistant";
 
 export type MessageStatus = "sending" | "streaming" | "done" | "error";
 
+export interface User {
+	name: string;
+	email: string;
+	avatar?: string;
+}
+
 export interface Attachment {
 	id: string;
 	name: string;

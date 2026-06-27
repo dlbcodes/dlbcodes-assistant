@@ -18,6 +18,7 @@ import ProfileSection from "../../components/app/settings/ProfileSection.vue";
 import PreferencesSection from "../../components/app/settings/PreferencesSection.vue";
 import SecuritySection from "../../components/app/settings/SecuritySection.vue";
 import BillingSection from "../../components/app/settings/BillingSection.vue";
+import { currentUser } from "../../data/mock";
 
 const route = useRoute();
 const router = useRouter();
@@ -37,8 +38,8 @@ const onChange = (index: number): void => {
 
 <template>
     <div class="max-w-3xl px-6 md:px-20 py-10">
-        <h1 class="font-serif text-3xl tracking-wide text-text-primary">
-            Settings
+        <h1 class="text-xl font-medium text-text-primary">
+            Welcome, {{ currentUser.name.split(" ")[0] }}!
         </h1>
         <p class="mt-1 text-sm text-text-secondary">
             Manage your account, preferences, security, and billing.

@@ -17,13 +17,7 @@ import {
     PhSignOut,
     PhCaretUpDown,
 } from "@phosphor-icons/vue";
-
-// Stubbed user — a forker swaps this for their auth/session data.
-const user = {
-    name: "Dana Lewis",
-    email: "dana@example.com",
-    img: "",
-};
+import { currentUser } from "../../data/mock";
 
 const router = useRouter();
 
@@ -47,13 +41,17 @@ const logout = (): void => {
                 class="flex w-full items-center gap-2 px-2 py-2 transition-colors hover:bg-bg-subtle"
                 :class="open ? 'bg-bg-subtle' : ''"
             >
-                <Avatar :name="user.name" :src="user.img" size="sm" />
+                <Avatar
+                    :name="currentUser.name"
+                    :src="currentUser.avatar"
+                    size="sm"
+                />
                 <div class="min-w-0 flex-1 text-left">
                     <p class="truncate text-sm font-medium text-text-primary">
-                        {{ user.name }}
+                        {{ currentUser.name }}
                     </p>
                     <p class="truncate text-xs text-text-tertiary">
-                        {{ user.email }}
+                        {{ currentUser.email }}
                     </p>
                 </div>
                 <PhCaretUpDown

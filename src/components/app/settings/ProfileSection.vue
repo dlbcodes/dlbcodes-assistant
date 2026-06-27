@@ -10,9 +10,11 @@ import {
     Separator,
     Avatar,
 } from "@dlbcodes/my-design-system";
+import { currentUser } from "../../../data/mock";
 
-const name = ref("Dana Lewis");
-const email = ref("dana@example.com");
+const name = ref(currentUser.name);
+const email = ref(currentUser.email);
+const avatar = ref(currentUser.avatar);
 
 const save = (): void => {
     // STUB: persist profile changes here.
@@ -22,7 +24,7 @@ const save = (): void => {
 <template>
     <div class="flex flex-col gap-6">
         <div class="flex items-center gap-4">
-            <Avatar :name="name" size="lg" />
+            <Avatar :name="name" :src="avatar" size="lg" />
             <Button variant="secondary" size="sm">Change photo</Button>
         </div>
         <Separator />
