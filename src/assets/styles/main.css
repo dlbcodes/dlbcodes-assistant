@@ -21,16 +21,18 @@
 
 :root,
 [data-theme="lattice"] {
+    /* --color-accent-pro-200: oklch(0.66 0.22 1); */
+    --color-accent-pro-100: oklch(0.66 0.22 1);
 }
 
 /* ─── Zinc — shadcn's cool-gray base; near monochrome ─── */
 [data-theme="zinc"] {
     /* Backgrounds — flat white surfaces, gray canvas */
     --color-bg-base: oklch(1 0 0); /* #ffffff */
-    --color-bg-surface: oklch(0.9702 0 0); /* #f5f5f5 neutral-100 */
+    --color-bg-surface: oklch(0.98 0 0); /* #f5f5f5 neutral-100 */
     --color-bg-raised: oklch(1 0 0); /* #ffffff card */
     --color-bg-elevated: oklch(0.9851 0 0); /* #fafafa neutral-50 */
-    --color-bg-subtle: oklch(0.9702 0 0); /* #f5f5f5 neutral-100 hover */
+    --color-bg-subtle: oklch(0.95 0 0); /* #f5f5f5 neutral-100 hover */
     --color-bg-inverse: oklch(0.2046 0 0); /* #171717 neutral-900 */
 
     /* Text */
@@ -48,8 +50,8 @@
     --color-brand-100: oklch(0.1448 0 0); /* #0a0a0a darker hover */
     --color-brand-200: oklch(0.2046 0 0); /* #171717 primary */
 
-    --color-accent-pro-200: oklch(0.66 0.22 1);
-    --color-accent-pro-200: oklch(0.66 0.22 1);
+    --color-accent-pro-200: oklch(0.66 0.22 37.3);
+    --color-accent-pro-200: oklch(0.66 0.22 37.3);
 }
 
 /* ─── Slate — strong blue-gray neutrals, blue accent ─── */

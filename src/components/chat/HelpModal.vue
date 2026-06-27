@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch, nextTick } from "vue";
 import {
     Modal,
     ModalHeader,
@@ -20,9 +20,16 @@ const open = defineModel<boolean>("open", { required: true });
 
 const subject = ref("");
 const message = ref("");
+const subjectRef = ref();
+
+watch(open, async (isOpen) => {
+    if (!isOpen) return;
+    await nextTick();
+    const el = subjectRef.value?.$el ?? subjectRef.value;
+    (el?.querySelector?.("input") ?? el)?.focus?.();
+});
 
 const sendHelp = (): void => {
-    // STUB: send the support request to your backend here.
     subject.value = "";
     message.value = "";
     open.value = false;
@@ -51,6 +58,7 @@ const cancel = (): void => {
                     <FieldLabel>Subject</FieldLabel>
                     <FieldContent>
                         <Input
+                            ref="subjectRef"
                             v-model="subject"
                             placeholder="What's this about?"
                         />

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import {
     Dropdown,
@@ -7,6 +6,8 @@ import {
     DropdownContent,
     DropdownItem,
     Avatar,
+    Kbd,
+    KbdGroup,
 } from "@dlbcodes/my-design-system";
 import {
     PhSquaresFour,
@@ -16,8 +17,6 @@ import {
     PhSignOut,
     PhCaretUpDown,
 } from "@phosphor-icons/vue";
-import ShortcutsModal from "./ShortcutsModal.vue";
-import HelpModal from "./HelpModal.vue";
 
 // Stubbed user — a forker swaps this for their auth/session data.
 const user = {
@@ -28,8 +27,12 @@ const user = {
 
 const router = useRouter();
 
-const shortcutsOpen = ref(false);
-const helpOpen = ref(false);
+// The shortcuts/help modals live in AppLayout (so the keyboard shortcuts can
+// open them too). This menu just asks the parent to open them.
+const emit = defineEmits<{
+    "open-shortcuts": [];
+    "open-help": [];
+}>();
 
 const logout = (): void => {
     // STUB: clear your session here, then redirect.
@@ -39,42 +42,70 @@ const logout = (): void => {
 
 <template>
     <Dropdown placement="top-start" class="w-full">
-        <DropdownTrigger class="flex w-full items-center gap-2 px-2 py-2">
-            <Avatar :name="user.name" :src="user.img" size="sm" />
-            <div class="min-w-0 flex-1 text-left">
-                <p class="truncate text-sm font-medium text-text-primary">
-                    {{ user.name }}
-                </p>
-                <p class="truncate text-xs text-text-tertiary">
-                    {{ user.email }}
-                </p>
+        <DropdownTrigger v-slot="{ open }" class="w-full overflow-hidden">
+            <div
+                class="flex w-full items-center gap-2 px-2 py-2 transition-colors hover:bg-bg-subtle"
+                :class="open ? 'bg-bg-subtle' : ''"
+            >
+                <Avatar :name="user.name" :src="user.img" size="sm" />
+                <div class="min-w-0 flex-1 text-left">
+                    <p class="truncate text-sm font-medium text-text-primary">
+                        {{ user.name }}
+                    </p>
+                    <p class="truncate text-xs text-text-tertiary">
+                        {{ user.email }}
+                    </p>
+                </div>
+                <PhCaretUpDown
+                    class="size-5 shrink-0 text-text-tertiary"
+                    aria-hidden="true"
+                />
             </div>
-            <PhCaretUpDown
-                class="size-5 shrink-0 text-text-tertiary"
-                aria-hidden="true"
-            />
         </DropdownTrigger>
 
         <DropdownContent size="3xs">
             <DropdownItem :as="RouterLink" to="/app">
                 <PhSquaresFour class="size-4" aria-hidden="true" /> Overview
             </DropdownItem>
-            <DropdownItem :as="RouterLink" to="/app/settings">
-                <PhGear class="size-4" aria-hidden="true" /> Settings
+            <DropdownItem
+                :as="RouterLink"
+                to="/app/settings"
+                class="justify-between"
+            >
+                <span class="flex items-center gap-x-2">
+                    <PhGear class="size-4" aria-hidden="true" />
+                    Settings
+                </span>
+                <KbdGroup>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>,</Kbd>
+                </KbdGroup>
             </DropdownItem>
-            <DropdownItem @click="shortcutsOpen = true">
-                <PhKeyboard class="size-4" aria-hidden="true" /> Keyboard
-                shortcuts
+            <DropdownItem
+                @click="emit('open-shortcuts')"
+                class="justify-between"
+            >
+                <span class="flex items-center gap-x-2">
+                    <PhKeyboard class="size-4" aria-hidden="true" />
+                    Keyboard shortcuts
+                </span>
+                <KbdGroup>
+                    <Kbd>?</Kbd>
+                </KbdGroup>
             </DropdownItem>
-            <DropdownItem @click="helpOpen = true">
-                <PhQuestion class="size-4" aria-hidden="true" /> Get help
+            <DropdownItem @click="emit('open-help')" class="justify-between">
+                <span class="flex items-center gap-x-2">
+                    <PhQuestion class="size-4" aria-hidden="true" />
+                    Get help
+                </span>
+                <KbdGroup>
+                    <Kbd>⌘</Kbd>
+                    <Kbd>J</Kbd>
+                </KbdGroup>
             </DropdownItem>
             <DropdownItem @click="logout">
                 <PhSignOut class="size-4" aria-hidden="true" /> Log out
             </DropdownItem>
         </DropdownContent>
     </Dropdown>
-
-    <ShortcutsModal v-model:open="shortcutsOpen" />
-    <HelpModal v-model:open="helpOpen" />
 </template>

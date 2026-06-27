@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useTheme } from "../composables/useTheme";
 import { PhCube } from "@phosphor-icons/vue";
 import { siteConfig } from "../config/site";
 
@@ -11,8 +10,6 @@ const props = withDefaults(
     }>(),
     { size: "base", showName: true },
 );
-
-const { brand } = useTheme();
 
 const box = computed(
     () =>
@@ -28,7 +25,7 @@ const icon = computed(
         ({
             sm: "size-4",
             base: "size-5",
-            lg: "size-5",
+            lg: "size-6",
         })[props.size],
 );
 </script>

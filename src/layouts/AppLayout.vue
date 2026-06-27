@@ -26,6 +26,7 @@ import {
     PhDotsThreeVertical,
     PhPencilSimple,
     PhTrash,
+    PhMagnifyingGlass,
 } from "@phosphor-icons/vue";
 import BrandMark from "../components/BrandMark.vue";
 import ThemeSwitcher from "../components/ThemeSwitcher.vue";
@@ -33,6 +34,9 @@ import UserMenu from "../components/chat/UserMenu.vue";
 import AppShortcuts from "../components/chat/AppShortcuts.vue";
 import DeleteConversationModal from "../components/chat/DeleteConversationModal.vue";
 import RenameConversationModal from "../components/chat/RenameConversationModal.vue";
+import ShortcutsModal from "../components/chat/ShortcutsModal.vue";
+import HelpModal from "../components/chat/HelpModal.vue";
+import CommandPalette from "../components/app/CommandPalette.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -45,6 +49,7 @@ const conversations = ref([
     { id: "3", title: "Debug webhook 307 redirect" },
 ]);
 
+const commandOpen = ref(false);
 const renameOpen = ref(false);
 const deleteOpen = ref(false);
 const activeConversation = ref<{ id: string; title: string } | null>(null);
@@ -73,6 +78,9 @@ const onDelete = (): void => {
 const newChat = (): void => {
     router.push("/app");
 };
+
+const shortcutsOpen = ref(false);
+const helpOpen = ref(false);
 </script>
 
 <template>
@@ -80,8 +88,15 @@ const newChat = (): void => {
         <div class="flex h-dvh">
             <Sidebar>
                 <!-- Brand -->
-                <SidebarHeader>
+                <SidebarHeader class="flex items-center justify-between">
                     <BrandMark />
+                    <Button
+                        @click="commandOpen = true"
+                        variant="secondary"
+                        size="icon"
+                    >
+                        <PhMagnifyingGlass class="size-4" aria-hidden="true" />
+                    </Button>
                 </SidebarHeader>
                 <!-- End Brand -->
 
@@ -160,12 +175,15 @@ const newChat = (): void => {
 
                 <!-- Footer -->
                 <SidebarFooter>
-                    <UserMenu />
+                    <UserMenu
+                        @open-shortcuts="shortcutsOpen = true"
+                        @open-help="helpOpen = true"
+                    />
                     <Separator class="my-2" />
                     <Button
                         to="/app/settings?tab=billing"
                         variant="outline"
-                        class="group flex items-center w-full px-2"
+                        class="group flex items-center w-full px-2 bg-bg-raised"
                     >
                         <div class="flex flex-1 items-center gap-x-2">
                             <PhArrowCircleUp
@@ -202,8 +220,21 @@ const newChat = (): void => {
             </div>
             <!-- End Main area -->
         </div>
-        <AppShortcuts />
+        <AppShortcuts
+            @open-shortcuts="shortcutsOpen = true"
+            @open-help="helpOpen = true"
+            @open-command="commandOpen = true"
+        />
     </SidebarProvider>
+
+    <ShortcutsModal v-model:open="shortcutsOpen" />
+    <HelpModal v-model:open="helpOpen" />
+
+    <CommandPalette
+        v-model:open="commandOpen"
+        @open-shortcuts="shortcutsOpen = true"
+        @open-help="helpOpen = true"
+    />
 
     <RenameConversationModal
         v-if="activeConversation"

@@ -29,7 +29,7 @@ onUnmounted(() => clearInterval(timer));
                 class="flex flex-wrap justify-end gap-1"
             >
                 <AttachmentChip
-                    v-for="(file, i) in message.attachments"
+                    v-for="file in message.attachments"
                     :key="file.id"
                     :attachment="file"
                 />

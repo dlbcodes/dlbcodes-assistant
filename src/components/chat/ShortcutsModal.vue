@@ -5,16 +5,21 @@ import {
     ModalTitle,
     ModalDescription,
     ModalContent,
+    ModalFooter,
     ModalClose,
     Kbd,
+    KbdGroup,
 } from "@dlbcodes/my-design-system";
 
 const open = defineModel<boolean>("open", { required: true });
 
 const shortcuts = [
+    { action: "Command palette", keys: ["⌘", "K"] },
     { action: "New chat", keys: ["⌘", "⇧", "O"] },
-    { action: "Search conversations", keys: ["⌘", "⇧", "O"] },
     { action: "Toggle sidebar", keys: ["⌘", "B"] },
+    { action: "Go to settings", keys: ["⌘", ","] },
+    { action: "Get help", keys: ["⌘", "J"] },
+    { action: "Keyboard shortcuts", keys: ["?"] },
     { action: "Send message", keys: ["⏎"] },
     { action: "New line", keys: ["⇧", "⏎"] },
 ];
@@ -39,11 +44,16 @@ const shortcuts = [
                     <span class="text-sm text-text-secondary">{{
                         s.action
                     }}</span>
-                    <span class="flex items-center gap-1">
+                    <KbdGroup>
                         <Kbd v-for="k in s.keys" :key="k">{{ k }}</Kbd>
-                    </span>
+                    </KbdGroup>
                 </div>
             </div>
         </ModalContent>
+        <ModalFooter
+            class="justify-start gap-1 border-t border-border-subtle font-mono text-xs tracking-tight text-text-tertiary"
+        >
+            Press <Kbd>esc</Kbd> to close
+        </ModalFooter>
     </Modal>
 </template>

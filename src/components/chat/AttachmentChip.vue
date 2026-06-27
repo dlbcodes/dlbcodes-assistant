@@ -10,7 +10,7 @@ defineEmits<{ remove: [] }>();
 
 <template>
     <div
-        class="flex items-center gap-x-1 rounded-lg border border-border-subtle bg-bg-raised py-1 pl-2 pr-1 shadow-sm"
+        class="flex items-center gap-x-1 rounded-lg border border-border-subtle bg-bg-raised py-1 pl-2 pr-1"
     >
         <img
             :src="iconForFile(attachment.name)"

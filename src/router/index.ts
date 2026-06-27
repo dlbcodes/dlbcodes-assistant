@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import type { RouteRecordRaw } from "vue-router";
 import MarketingLayout from "../layouts/MarketingLayout.vue";
 import AppLayout from "../layouts/AppLayout.vue";
+import AuthLayout from "../layouts/AuthLayout.vue";
 
 
 const routes: RouteRecordRaw[] = [
@@ -12,6 +13,14 @@ const routes: RouteRecordRaw[] = [
 		children: [
 			{ path: "", name: "home", component: () => import("../views/marketing/HomeView.vue") },
 			{ path: "pricing", name: "pricing", component: () => import("../views/marketing/PricingView.vue") },
+		],
+	},
+	{
+		path: "/",
+		component: AuthLayout,
+		children: [
+			{ path: "login", name: "login", component: () => import("../views/auth/LoginView.vue") },
+			{ path: "signup", name: "signup", component: () => import("../views/auth/SignupView.vue") },
 		],
 	},
 	{
