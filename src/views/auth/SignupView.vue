@@ -37,11 +37,19 @@ const password = ref("");
                 </div>
 
                 <div class="flex flex-col gap-2">
-                    <Button variant="secondary" class="w-full justify-center">
+                    <Button
+                        to="/app"
+                        variant="secondary"
+                        class="w-full justify-center"
+                    >
                         <PhGoogleLogo class="size-4" aria-hidden="true" />
                         Continue with Google
                     </Button>
-                    <Button variant="secondary" class="w-full justify-center">
+                    <Button
+                        to="/app"
+                        variant="secondary"
+                        class="w-full justify-center"
+                    >
                         <PhGithubLogo class="size-4" aria-hidden="true" />
                         Continue with GitHub
                     </Button>

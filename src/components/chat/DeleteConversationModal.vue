@@ -11,7 +11,7 @@ import {
 } from "@dlbcodes/my-design-system";
 
 defineProps<{
-    title: string; // the conversation being deleted
+    title: string;
 }>();
 
 const open = defineModel<boolean>("open", { required: true });

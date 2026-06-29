@@ -29,9 +29,9 @@ const shortcuts = [
     <Modal v-model="open" size="md">
         <ModalHeader>
             <ModalTitle>Keyboard shortcuts</ModalTitle>
-            <ModalDescription
-                >Move faster with these shortcuts.</ModalDescription
-            >
+            <ModalDescription>
+                Move faster with these shortcuts.
+            </ModalDescription>
             <ModalClose />
         </ModalHeader>
         <ModalContent>
@@ -41,9 +41,9 @@ const shortcuts = [
                     :key="s.action"
                     class="flex items-center justify-between border-b border-border-subtle py-2.5 last:border-b-0"
                 >
-                    <span class="text-sm text-text-secondary">{{
-                        s.action
-                    }}</span>
+                    <span class="text-sm text-text-secondary">
+                        {{ s.action }}
+                    </span>
                     <KbdGroup>
                         <Kbd v-for="k in s.keys" :key="k">{{ k }}</Kbd>
                     </KbdGroup>

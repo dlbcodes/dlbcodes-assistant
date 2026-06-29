@@ -12,7 +12,7 @@ import {
     SelectContent,
     SelectItem,
 } from "@dlbcodes/my-design-system";
-import { PhFilePlus, PhArrowUp, PhCaretDown } from "@phosphor-icons/vue";
+import { PhFilePlus, PhArrowUp } from "@phosphor-icons/vue";
 import UploadModal from "./UploadModal.vue";
 import AttachmentChip from "./AttachmentChip.vue";
 import { siteConfig } from "../../config/site.ts";
@@ -39,7 +39,6 @@ const inputRef = ref();
 const uploadOpen = ref(false);
 const attachments = ref<Attachment[]>([]);
 
-// Clicking empty panel space focuses the textarea (but not when clicking a control).
 const focusInput = (e: MouseEvent): void => {
     if ((e.target as HTMLElement).closest("button, [role='menu'], a")) return;
     const el = inputRef.value?.$el ?? inputRef.value;
@@ -54,7 +53,6 @@ const submit = (): void => {
     attachments.value = [];
 };
 
-// Enter to send, Shift+Enter for newline.
 const onKeydown = (e: KeyboardEvent): void => {
     if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();

@@ -8,7 +8,6 @@ import {
     Input,
     Button,
     Checkbox,
-    Label,
     Separator,
     Panel,
     PanelContent,
@@ -37,11 +36,19 @@ const remember = ref(false);
                     </p>
                 </div>
                 <div class="flex flex-col gap-2">
-                    <Button variant="secondary" class="w-full justify-center">
+                    <Button
+                        to="/app"
+                        variant="secondary"
+                        class="w-full justify-center"
+                    >
                         <PhGoogleLogo class="size-4" aria-hidden="true" />
                         Continue with Google
                     </Button>
-                    <Button variant="secondary" class="w-full justify-center">
+                    <Button
+                        to="/app"
+                        variant="secondary"
+                        class="w-full justify-center"
+                    >
                         <PhGithubLogo class="size-4" aria-hidden="true" />
                         Continue with GitHub
                     </Button>
@@ -76,11 +83,12 @@ const remember = ref(false);
                     </Field>
 
                     <div class="flex items-center justify-between">
-                        <Label
-                            class="flex items-center gap-2 text-sm text-text-secondary"
-                        >
-                            <Checkbox v-model="remember" /> Remember me
-                        </Label>
+                        <Field orientation="horizontal">
+                            <FieldContent>
+                                <Checkbox v-model="remember" />
+                            </FieldContent>
+                            <FieldLabel>Remember me</FieldLabel>
+                        </Field>
 
                         <a
                             href="#"

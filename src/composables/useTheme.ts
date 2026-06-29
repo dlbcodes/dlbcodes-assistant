@@ -14,7 +14,7 @@ const THEMES: Record<Theme, BrandInfo> = {
 	zinc: { name: "Zinc", tagline: "Simple. Sharp. Focused." },
 };
 
-const current = ref<Theme>("lattice");
+const current = ref<Theme>("zinc");
 
 const apply = (theme: Theme): void => {
 	document.documentElement.setAttribute("data-theme", theme);

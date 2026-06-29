@@ -22,9 +22,9 @@ const keys = Object.keys(themes) as Theme[];
         </DropdownTrigger>
         <DropdownContent>
             <DropdownItem v-for="t in keys" :key="t" @click="setTheme(t)">
-                <span class="text-left flex-1 capitalize">{{
-                    themes[t].name
-                }}</span>
+                <span class="text-left flex-1 capitalize">
+                    {{ themes[t].name }}
+                </span>
                 <PhCheck v-if="current === t" class="size-4" />
             </DropdownItem>
         </DropdownContent>

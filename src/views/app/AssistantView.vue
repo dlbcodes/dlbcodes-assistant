@@ -5,8 +5,8 @@ import { useChat } from "../../composables/useChat";
 import type { Attachment } from "../../types/chat";
 import ChatComposer from "../../components/chat/ChatComposer.vue";
 import MessageList from "../../components/chat/MessageList.vue";
+import BrandMark from "../../components/BrandMark.vue";
 import {
-    PhCube,
     PhFileText,
     PhChatText,
     PhMagnifyingGlass,
@@ -72,15 +72,12 @@ const useSuggestion = async (prompt: string): Promise<void> => {
                     class="flex flex-1 flex-col justify-center gap-y-8 py-8"
                 >
                     <div class="flex items-start gap-x-3">
-                        <div
-                            class="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-pro-200 text-text-inverse"
-                        >
-                            <PhCube
-                                class="size-5"
-                                weight="fill"
-                                aria-hidden="true"
-                            />
-                        </div>
+                        <BrandMark
+                            :show-name="false"
+                            size="lg"
+                            class="shrink-0"
+                        />
+
                         <div class="flex flex-col">
                             <h1 class="text-2xl font-medium text-text-primary">
                                 Good morning, Dana.

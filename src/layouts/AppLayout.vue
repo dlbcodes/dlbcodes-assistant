@@ -38,17 +38,15 @@ import RenameConversationModal from "../components/chat/RenameConversationModal.
 import ShortcutsModal from "../components/chat/ShortcutsModal.vue";
 import HelpModal from "../components/chat/HelpModal.vue";
 import CommandPalette from "../components/app/CommandPalette.vue";
+import { conversations as mockConversations } from "../data/mock";
 
 const route = useRoute();
 const router = useRouter();
 const pageTitle = computed(() => (route.meta.title as string) ?? "");
 
-// Stubbed conversation history — a forker replaces this with real data.
-const conversations = ref([
-    { id: "1", title: "Summarize quarterly report" },
-    { id: "2", title: "Draft launch announcement" },
-    { id: "3", title: "Debug webhook 307 redirect" },
-]);
+const conversations = ref(
+    mockConversations.map((c) => ({ id: c.id, title: c.title })),
+);
 
 const commandOpen = ref(false);
 const renameOpen = ref(false);
@@ -68,12 +66,12 @@ const onRename = (title: string): void => {
     const c = conversations.value.find(
         (x) => x.id === activeConversation.value?.id,
     );
-    if (c) c.title = title; // STUB: persist rename to your backend
+    if (c) c.title = title;
 };
 const onDelete = (): void => {
     conversations.value = conversations.value.filter(
         (x) => x.id !== activeConversation.value?.id,
-    ); // STUB: delete on your backend
+    );
 };
 
 const newChat = (): void => {
@@ -205,6 +203,13 @@ const helpOpen = ref(false);
                             ></span>
                         </div>
                     </Button>
+                    <a
+                        href="https://my-design-system-beta.vercel.app/"
+                        target="_blank"
+                        class="flex justify-center text-center text-xs text-text-tertiary hover:text-text-primary transition-colors pt-2"
+                    >
+                        Documentation ↗
+                    </a>
                 </SidebarFooter>
                 <!-- End Footer -->
             </Sidebar>
@@ -269,31 +274,3 @@ const helpOpen = ref(false);
         @confirm="onDelete"
     />
 </template>
-
-<style>
-@keyframes dot-cycle {
-    0% {
-        background-color: #e4f221;
-    }
-    33% {
-        background-color: #934cff;
-    }
-    66% {
-        background-color: #fb4d00;
-    }
-    100% {
-        background-color: #e4f221;
-    }
-}
-
-.group:hover .dot {
-    animation: dot-cycle 2.5s linear infinite;
-}
-
-.group:hover .dot:nth-child(2) {
-    animation-delay: -1s;
-}
-.group:hover .dot:nth-child(3) {
-    animation-delay: -2s;
-}
-</style>

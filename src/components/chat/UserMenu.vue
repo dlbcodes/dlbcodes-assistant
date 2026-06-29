@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import {
     Dropdown,
     DropdownTrigger,
@@ -21,15 +21,12 @@ import { currentUser } from "../../data/mock";
 
 const router = useRouter();
 
-// The shortcuts/help modals live in AppLayout (so the keyboard shortcuts can
-// open them too). This menu just asks the parent to open them.
 const emit = defineEmits<{
     "open-shortcuts": [];
     "open-help": [];
 }>();
 
 const logout = (): void => {
-    // STUB: clear your session here, then redirect.
     router.push("/login");
 };
 </script>
@@ -62,12 +59,11 @@ const logout = (): void => {
         </DropdownTrigger>
 
         <DropdownContent size="3xs">
-            <DropdownItem :as="RouterLink" to="/app">
+            <DropdownItem @click="router.push('/app')">
                 <PhSquaresFour class="size-4" aria-hidden="true" /> Overview
             </DropdownItem>
             <DropdownItem
-                :as="RouterLink"
-                to="/app/settings"
+                @click="router.push('/app/settings')"
                 class="justify-between"
             >
                 <span class="flex items-center gap-x-2">

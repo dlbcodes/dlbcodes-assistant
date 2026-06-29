@@ -23,7 +23,6 @@ import { currentUser } from "../../data/mock";
 const route = useRoute();
 const router = useRouter();
 
-// Tab order is the source of truth; the URL ?tab= mirrors it for refresh + deep links.
 const TABS = ["profile", "preferences", "security", "billing"] as const;
 
 const activeIndex = computed(() => {
