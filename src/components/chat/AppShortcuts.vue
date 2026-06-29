@@ -1,8 +1,9 @@
+<!-- components/chat/AppShortcuts.vue — renderless, lives inside SidebarProvider -->
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useSidebar } from "@dlbcodes/my-design-system";
 import { useMagicKeys, whenever, useActiveElement } from "@vueuse/core";
-import { useRouter } from "vue-router";
 
 const emit = defineEmits<{
     "open-shortcuts": [];
@@ -10,8 +11,16 @@ const emit = defineEmits<{
     "open-command": [];
 }>();
 
-const { toggle } = useSidebar();
+const route = useRoute();
 const router = useRouter();
+const { isMobile, close, toggle } = useSidebar();
+
+watch(
+    () => route.fullPath,
+    () => {
+        if (isMobile.value) close();
+    },
+);
 
 // Don't fire single-key shortcuts (like "?") while the user is typing.
 const activeEl = useActiveElement();
@@ -24,18 +33,17 @@ const typing = computed(() => {
     );
 });
 
-// Combos we own — prevent the browser default so they don't trigger bookmarks, etc.
 const OWNED = [
     (e: KeyboardEvent) =>
         e.key.toLowerCase() === "b" && (e.metaKey || e.ctrlKey) && !e.shiftKey,
     (e: KeyboardEvent) =>
         e.key.toLowerCase() === "o" && (e.metaKey || e.ctrlKey) && e.shiftKey,
+    (e: KeyboardEvent) =>
+        e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey),
     (e: KeyboardEvent) => e.key === "," && (e.metaKey || e.ctrlKey),
     (e: KeyboardEvent) =>
         e.key.toLowerCase() === "j" && (e.metaKey || e.ctrlKey),
     (e: KeyboardEvent) => e.key === "?" && !typing.value,
-    (e: KeyboardEvent) =>
-        e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey),
 ];
 
 const keys = useMagicKeys({
@@ -58,6 +66,10 @@ const newChat = (): void => {
 whenever(keys["Meta+Shift+O"], newChat);
 whenever(keys["Ctrl+Shift+O"], newChat);
 
+// ⌘K / Ctrl+K — command palette
+whenever(keys["Meta+K"], () => emit("open-command"));
+whenever(keys["Ctrl+K"], () => emit("open-command"));
+
 // ⌘, / Ctrl+, — settings
 const openSettings = (): void => {
     router.push("/app/settings");
@@ -73,9 +85,6 @@ whenever(keys["Ctrl+J"], () => emit("open-help"));
 whenever(keys["?"], () => {
     if (!typing.value) emit("open-shortcuts");
 });
-
-whenever(keys["Meta+K"], () => emit("open-command"));
-whenever(keys["Ctrl+K"], () => emit("open-command"));
 </script>
 
 <template></template>

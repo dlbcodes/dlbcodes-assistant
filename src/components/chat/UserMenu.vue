@@ -8,6 +8,7 @@ import {
     Avatar,
     Kbd,
     KbdGroup,
+    useSidebar,
 } from "@dlbcodes/my-design-system";
 import {
     PhSquaresFour,
@@ -20,14 +21,29 @@ import {
 import { currentUser } from "../../data/mock";
 
 const router = useRouter();
+const { isMobile, close } = useSidebar();
 
 const emit = defineEmits<{
     "open-shortcuts": [];
     "open-help": [];
 }>();
 
+const go = (to: string): void => {
+    router.push(to);
+    if (isMobile.value) close();
+};
+
+const openShortcuts = (): void => {
+    emit("open-shortcuts");
+    if (isMobile.value) close();
+};
+const openHelp = (): void => {
+    emit("open-help");
+    if (isMobile.value) close();
+};
+
 const logout = (): void => {
-    router.push("/login");
+    go("/login");
 };
 </script>
 
@@ -59,13 +75,10 @@ const logout = (): void => {
         </DropdownTrigger>
 
         <DropdownContent size="3xs">
-            <DropdownItem @click="router.push('/app')">
+            <DropdownItem @click="go('/app')">
                 <PhSquaresFour class="size-4" aria-hidden="true" /> Overview
             </DropdownItem>
-            <DropdownItem
-                @click="router.push('/app/settings')"
-                class="justify-between"
-            >
+            <DropdownItem @click="go('/app/settings')" class="justify-between">
                 <span class="flex items-center gap-x-2">
                     <PhGear class="size-4" aria-hidden="true" />
                     Settings
@@ -75,10 +88,7 @@ const logout = (): void => {
                     <Kbd>,</Kbd>
                 </KbdGroup>
             </DropdownItem>
-            <DropdownItem
-                @click="emit('open-shortcuts')"
-                class="justify-between"
-            >
+            <DropdownItem @click="openShortcuts" class="justify-between">
                 <span class="flex items-center gap-x-2">
                     <PhKeyboard class="size-4" aria-hidden="true" />
                     Keyboard shortcuts
@@ -87,7 +97,7 @@ const logout = (): void => {
                     <Kbd>?</Kbd>
                 </KbdGroup>
             </DropdownItem>
-            <DropdownItem @click="emit('open-help')" class="justify-between">
+            <DropdownItem @click="openHelp" class="justify-between">
                 <span class="flex items-center gap-x-2">
                     <PhQuestion class="size-4" aria-hidden="true" />
                     Get help
