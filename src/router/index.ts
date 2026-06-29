@@ -27,6 +27,7 @@ const routes: RouteRecordRaw[] = [
 			{ path: "settings", name: "settings", component: () => import("../views/app/SettingsView.vue"), meta: { title: "Settings" } },
 		],
 	},
+	{ path: "/:pathMatch(.*)*", name: "not-found", component: () => import("../views/NotFound.vue") }
 ];
 
 const router = createRouter({
