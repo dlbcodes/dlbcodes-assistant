@@ -93,6 +93,7 @@ const helpOpen = ref(false);
                         @click="commandOpen = true"
                         variant="secondary"
                         size="icon"
+                        class="hidden md:flex"
                     >
                         <PhMagnifyingGlass class="size-4" aria-hidden="true" />
                     </Button>

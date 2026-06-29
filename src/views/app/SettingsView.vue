@@ -45,26 +45,40 @@ const onChange = (index: number): void => {
         </p>
 
         <Tabs class="mt-8" :selected-index="activeIndex" @change="onChange">
-            <TabsList>
+            <TabsList
+                class="-mx-6 flex overflow-x-auto px-6 md:mx-0 md:px-0 no-scrollbar"
+            >
                 <TabsTrigger>
-                    <PhUser class="size-4" aria-hidden="true" /> Profile
+                    <PhUser class="size-4" aria-hidden="true" />
+                    Profile
                 </TabsTrigger>
                 <TabsTrigger>
-                    <PhSliders class="size-4" aria-hidden="true" /> Preferences
+                    <PhSliders class="size-4" aria-hidden="true" />
+                    Preferences
                 </TabsTrigger>
                 <TabsTrigger>
-                    <PhShieldCheck class="size-4" aria-hidden="true" /> Security
+                    <PhShieldCheck class="size-4" aria-hidden="true" />
+                    Security
                 </TabsTrigger>
                 <TabsTrigger>
-                    <PhCreditCard class="size-4" aria-hidden="true" /> Billing
+                    <PhCreditCard class="size-4" aria-hidden="true" />
+                    Billing
                 </TabsTrigger>
             </TabsList>
 
             <TabsPanels class="mt-8">
-                <TabsContent><ProfileSection /></TabsContent>
-                <TabsContent><PreferencesSection /></TabsContent>
-                <TabsContent><SecuritySection /></TabsContent>
-                <TabsContent><BillingSection /></TabsContent>
+                <TabsContent>
+                    <ProfileSection />
+                </TabsContent>
+                <TabsContent>
+                    <PreferencesSection />
+                </TabsContent>
+                <TabsContent>
+                    <SecuritySection />
+                </TabsContent>
+                <TabsContent>
+                    <BillingSection />
+                </TabsContent>
             </TabsPanels>
         </Tabs>
     </div>
