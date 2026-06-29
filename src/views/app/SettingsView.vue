@@ -36,17 +36,19 @@ const onChange = (index: number): void => {
 </script>
 
 <template>
-    <div class="max-w-3xl px-6 md:px-20 py-10">
-        <h1 class="text-xl font-medium text-text-primary">
-            Welcome, {{ currentUser.name.split(" ")[0] }}!
-        </h1>
-        <p class="mt-1 text-sm text-text-secondary">
-            Manage your account, preferences, security, and billing.
-        </p>
+    <div class="flex flex-col gap-y-8 max-w-3xl px-6 md:px-20 py-10">
+        <div class="flex flex-col">
+            <h1 class="text-xl font-medium text-text-primary">
+                Welcome, {{ currentUser.name.split(" ")[0] }}!
+            </h1>
+            <p class="mt-1 text-sm text-text-secondary">
+                Manage your account, preferences, security, and billing.
+            </p>
+        </div>
 
-        <Tabs class="mt-8" :selected-index="activeIndex" @change="onChange">
+        <Tabs :selected-index="activeIndex" @change="onChange">
             <TabsList
-                class="-mx-6 flex overflow-x-auto px-6 md:mx-0 md:px-0 no-scrollbar"
+                class="no-scrollbar md:w-fit w-full max-w-full justify-start overflow-x-auto"
             >
                 <TabsTrigger>
                     <PhUser class="size-4" aria-hidden="true" />

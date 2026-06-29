@@ -17,6 +17,15 @@ import { findConversation } from "../data/mock";
 
 const uid = (): string => Math.random().toString(36).slice(2, 10);
 
+// Placeholder replies streamed back while there's no real backend wired up.
+// Swap the loop in send() for your model's output and these go away.
+const STUB_REPLIES = [
+	"Happy to help with that. Here's how I'd approach it, with a couple of options depending on what you're after.",
+	"Good question. Let me break this down into a few clear steps you can follow.",
+	"Here's a concise take, plus a couple of things worth keeping in mind as you go.",
+	"Sure, I'd start by clarifying the goal, then work through the details from there.",
+];
+
 export function useChat(conversationId?: string) {
 	// STUB: seed from mock data when opening an existing conversation.
 	// Replace with a fetch for this conversation's messages.
@@ -65,11 +74,10 @@ export function useChat(conversationId?: string) {
 		messages.value.push(assistant);
 		isResponding.value = true;
 
-		// ── STUB: fake a streamed reply. Replace with your endpoint. ──
-		const fake =
-			"This is a stubbed response. Wire `send()` in useChat.ts to your " +
-			"LLM endpoint and stream the reply into this message.";
-		const words = fake.split(" ");
+		// ── STUB: stream a placeholder reply word by word.
+		//    Replace this whole block with a call to your model and stream its output. ──
+		const reply = STUB_REPLIES[Math.floor(Math.random() * STUB_REPLIES.length)];
+		const words = reply.split(" ");
 		for (const word of words) {
 			await new Promise((r) => setTimeout(r, 40));
 			assistant.content += (assistant.content ? " " : "") + word;

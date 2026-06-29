@@ -30,7 +30,9 @@ const pct = (used: number, limit: number): number =>
     <div class="flex flex-col gap-8">
         <!-- Current plan -->
         <Panel>
-            <PanelContent class="flex items-center justify-between gap-4 p-4">
+            <PanelContent
+                class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-4"
+            >
                 <div class="flex flex-col gap-1">
                     <div class="flex items-center gap-2">
                         <span class="text-lg font-semibold text-text-primary">
@@ -73,7 +75,9 @@ const pct = (used: number, limit: number): number =>
         <Separator />
 
         <!-- Danger zone -->
-        <div class="flex items-center justify-between gap-4">
+        <div
+            class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+        >
             <div class="flex flex-col gap-0.5">
                 <span class="text-sm font-medium text-text-primary"
                     >Cancel subscription</span
