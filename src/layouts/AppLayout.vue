@@ -229,7 +229,7 @@ const helpOpen = ref(false);
                     <div class="ml-auto flex items-center gap-x-2">
                         <Button
                             as="a"
-                            to="https://github.com/dlbcodes/dlbcodes-assistant"
+                            to="https://ui.dlbcodes.com/"
                             target="_blank"
                             variant="icon"
                             size="icon"
