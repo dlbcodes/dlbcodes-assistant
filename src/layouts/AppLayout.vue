@@ -205,7 +205,7 @@ const helpOpen = ref(false);
                         </div>
                     </Button>
                     <a
-                        href="https://my-design-system-beta.vercel.app/"
+                        href="https://ui.dlbcodes.com/"
                         target="_blank"
                         class="flex justify-center text-center text-xs text-text-tertiary hover:text-text-primary transition-colors pt-2"
                     >
@@ -229,7 +229,7 @@ const helpOpen = ref(false);
                     <div class="ml-auto flex items-center gap-x-2">
                         <Button
                             as="a"
-                            to="https://ui.dlbcodes.com/"
+                            to="https://github.com/dlbcodes/dlbcodes-assistant"
                             target="_blank"
                             variant="icon"
                             size="icon"
